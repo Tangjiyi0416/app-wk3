@@ -1,0 +1,39 @@
+[{
+    "title": "Popular Books",
+    "Use Rating": false,
+    "data": [{
+            "title": "Fashionopolis",
+            "author": "Dana Thomas",
+            "image": ""
+        },
+        {
+            "title": "Chanel",
+            "author": "Patrick Mauriès",
+            "image": ""
+        },
+        {
+            "title": "Calligraphy",
+            "author": "June & Lucy",
+            "image": ""
+        }
+    ]
+}, {
+    "title": "Newest",
+    "Use Rating": true,
+    "data": [{
+            "title": "Yves Saint Laurent",
+            "author": "Suzy Menkes",
+            "image": ""
+        },
+        {
+            "title": "Chanel",
+            "author": "Patrick Mauriès",
+            "image": ""
+        },
+        {
+            "title": "Calligraphy",
+            "author": "June & Lucy",
+            "image": ""
+        }
+    ]
+}]
