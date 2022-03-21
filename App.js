@@ -2,7 +2,7 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import HomeScreen from "./src/components/HomeScreen";
 import DetailScreen from "./src/components/DetailScreen";
@@ -11,7 +11,7 @@ const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 export default function App() {
   const Empty = () => null;
-  function HomeStack() {
+  function HomeStack({ navigation }) {
     return (
       <Stack.Navigator>
         <Stack.Screen
@@ -20,6 +20,11 @@ export default function App() {
           options={{
             headerShadowVisible: false,
             headerTitle: "",
+            headerLeft: () => (
+              <Pressable onPress={navigation.toggleDrawer}>
+                <Icon name="menu" size={26} style={{ paddingLeft: 16 }} />
+              </Pressable>
+            ),
             headerRight: () => (
               <Icon name="magnify" size={26} style={{ paddingRight: 19.5 }} />
             ),
@@ -34,12 +39,13 @@ export default function App() {
           options={{
             headerTitle: "",
             headerShadowVisible: false,
-          }} //TODO: add header content
+          }} //TODO: add header content//Done
         />
       </Stack.Navigator>
     );
   }
   function HomeTab() {
+    //
     return (
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -65,23 +71,18 @@ export default function App() {
           },
           tabBarInactiveTintColor: "#666666",
           tabBarActiveTintColor: "#6200EE",
+          headerShown: false,
+          tabBarStyle: {
+            elevation: 2,
+            shadowOffset: { width: 0, height: -1 },
+            shadowOpacity: 0.2,
+            shadowRadius: 5,
+          },
         })}
       >
-        <Tab.Screen
-          name="Home"
-          component={HomeStack}
-          options={{ headerShown: false, title: "Home" }}
-        />
-        <Tab.Screen
-          name="Wishlist"
-          component={Empty}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
-          name="My books"
-          component={Empty}
-          options={{ headerShown: false }}
-        />
+        <Tab.Screen name="Home" component={HomeStack} />
+        <Tab.Screen name="Wishlist" component={Empty} />
+        <Tab.Screen name="My books" component={Empty} />
       </Tab.Navigator>
     );
   }
@@ -98,16 +99,24 @@ export default function App() {
       <Drawer.Navigator
         initialRouteName="Home"
         screenOptions={{
-          headerShown: false,
+          headerShown: false, //I know what I'm doing mate. tRUsT mE!
         }}
       >
         <Drawer.Screen
           name="Home"
-          options={{ title: "Home" }}
           component={HomeTab}
+          options={{ title: "Home" }}
         />
-        <Drawer.Screen name="Account" component={Empty} />
-        <Drawer.Screen name="Setting" component={Empty} />
+        <Drawer.Screen
+          name="Account"
+          component={Empty}
+          options={{ headerShown: true }} //header problems require head-er solution(X
+        />
+        <Drawer.Screen
+          name="Setting"
+          component={Empty}
+          options={{ headerShown: true }} //header problems require head-er solution(X
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );

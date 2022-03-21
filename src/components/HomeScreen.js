@@ -14,6 +14,23 @@ import books from "./json/books.json";
 
 export default class HomeScreen extends Component {
   render() {
+    const header = ({ section }) => {
+      return (
+        <View style={{ overflow: "visible" }}>
+          <Text style={styles.SectionTitle}>{section.title}</Text>
+          <FlatList
+            horizontal={true}
+            data={section.data}
+            keyExtractor={(item) => item.title}
+            renderItem={({ item }) => (
+              <ItemCard navigation={this.props.navigation} item={item} />
+            )}
+            showsHorizontalScrollIndicator={false}
+            style={{ marginVertical: 8 }}
+          />
+        </View>
+      );
+    };
     return (
       <SafeAreaView>
         <StatusBar />
@@ -23,23 +40,7 @@ export default class HomeScreen extends Component {
           stickySectionHeadersEnabled={false}
           showsHorizontalScrollIndicator={false}
           renderItem={() => null}
-          renderSectionHeader={({ section }) => {
-            return (
-              <View style={{ overflow: "visible" }}>
-                <Text style={styles.SectionTitle}>{section.title}</Text>
-                <FlatList
-                  horizontal={true}
-                  data={section.data}
-                  keyExtractor={(item) => item.title}
-                  renderItem={({ item }) => (
-                    <ItemCard navigation={this.props.navigation} item={item} />
-                  )}
-                  showsHorizontalScrollIndicator={false}
-                  style={{ marginVertical: 8 }}
-                />
-              </View>
-            );
-          }}
+          renderSectionHeader={header}
           style={{ marginHorizontal: 20 }}
         />
       </SafeAreaView>
