@@ -24,7 +24,7 @@ export default class ItemCard extends Component {
 
 const styles = StyleSheet.create({
   Image: { height: 200, width: 140, marginVertical: 8 },
-  Title: { fontSize: 16, fontWeight: 500, marginVertical: 8 },
+  Title: { fontSize: 16, fontWeight: "500", marginVertical: 8 },
   Author: { fontSize: 12, color: "#1313137f" },
-  Container: { marginRight: 16 },
+  Container: { marginLeft: 16 },
 });

@@ -10,7 +10,9 @@ const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 export default function App() {
+  //this is fine.
   const Empty = () => null;
+  //should make a separate file for this but... anyway.
   function HomeStack({ navigation }) {
     return (
       <Stack.Navigator>
@@ -19,33 +21,40 @@ export default function App() {
           component={HomeScreen}
           options={{
             headerShadowVisible: false,
-            headerTitle: "",
+            title: "", //now that's what we call "ingenious".
             headerLeft: () => (
               <Pressable onPress={navigation.toggleDrawer}>
-                <Icon name="menu" size={26} style={{ paddingLeft: 16 }} />
+                <Icon name="menu" size={26} />
               </Pressable>
             ),
-            headerRight: () => (
-              <Icon name="magnify" size={26} style={{ paddingRight: 19.5 }} />
-            ),
+            headerRight: () => <Icon name="magnify" size={26} />,
             headerRightContainerStyle: {
               justifyContent: "center",
             },
-          }} //TODO: add header content
+          }} //TODO: add header content//Done
         />
         <Stack.Screen
           name="Detail"
           component={DetailScreen}
           options={{
-            headerTitle: "",
             headerShadowVisible: false,
-          }} //TODO: add header content//Done
+            title: "",
+            headerLeft: () => (
+              <Pressable onPress={navigation.goBack}>
+                <Icon name="chevron-left" size={26} />
+              </Pressable>
+            ),
+            headerRight: () => <Icon name="bookmark-outline" size={26} />,
+            headerRightContainerStyle: {
+              justifyContent: "center",
+            },
+          }} //TODO: add header content
         />
       </Stack.Navigator>
     );
   }
+  //should make a separate file for this but... anyway.
   function HomeTab() {
-    //
     return (
       <Tab.Navigator
         screenOptions={({ route }) => ({

@@ -16,7 +16,7 @@ export default class HomeScreen extends Component {
   render() {
     const header = ({ section }) => {
       return (
-        <View style={{ overflow: "visible" }}>
+        <View>
           <Text style={styles.SectionTitle}>{section.title}</Text>
           <FlatList
             horizontal={true}
@@ -39,9 +39,9 @@ export default class HomeScreen extends Component {
           keyExtractor={(item, index) => item + index}
           stickySectionHeadersEnabled={false}
           showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
           renderItem={() => null}
           renderSectionHeader={header}
-          style={{ marginHorizontal: 20 }}
         />
       </SafeAreaView>
     );
@@ -51,7 +51,8 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
   SectionTitle: {
     fontSize: 24,
-    fontWeight: 500,
-    paddingVertical: 8,
+    fontWeight: "500",
+    marginVertical: 8,
+    marginLeft: 20,
   },
 });

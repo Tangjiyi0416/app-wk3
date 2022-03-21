@@ -23,13 +23,15 @@
             "author": "Suzy Menkes",
             "image": "https://raw.githubusercontent.com/Tangjiyi0416/app-wk3/main/img/img_book_ysl.png",
             "desc": "A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion.",
-            "rating": 4
+            "rating": 4,
+            "price": 46.99
         },
         {
             "title": "The Book of Signs",
             "author": "Rudolf Koch",
             "image": "https://raw.githubusercontent.com/Tangjiyi0416/app-wk3/main/img/img_book_tbos.png",
             "rating": 3
+
         },
         {
             "title": "Stitched Up",

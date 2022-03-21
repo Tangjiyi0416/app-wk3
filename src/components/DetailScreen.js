@@ -8,26 +8,48 @@ import {
 } from "react-native";
 import React, { Component } from "react";
 import RateBar from "./RateBar";
+import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 export default class DetailScreen extends Component {
   render() {
-    const { image, title, author, desc, rating } = this.props.route.params.item;
+    const { image, title, author, desc, rating, price } =
+      this.props.route.params.item;
     return (
       <ScrollView contentContainerStyle={styles.Container}>
         <Image source={{ uri: image }} style={styles.Image} />
         <Text style={styles.Title}>{title}</Text>
         <Text style={styles.Author}>{author}</Text>
-        <View style={styles.RateBarContainer}>
-          <RateBar rating={rating} style={styles.RateBarStar} />
-          <Text style={styles.RateBarText}>
-            <Text style={styles.RateBarTextAct}>{rating}.0</Text>
-            <Text style={styles.RateBarTextFul}> / 5.0</Text>
-          </Text>
-        </View>
+        {rating ? (
+          <View style={styles.RateBarContainer}>
+            <RateBar rating={rating} style={styles.RateBarStar} />
+            <Text style={styles.RateBarText}>
+              <Text style={styles.RateBarTextAct}>{rating}.0</Text>
+              <Text style={styles.RateBarTextFul}> / 5.0</Text>
+            </Text>
+          </View>
+        ) : null}
         <View style={styles.Desc}>
           <Text style={styles.DescText}>{desc}</Text>
         </View>
-        <Pressable></Pressable>
+        {price ? (
+          <Pressable
+            style={({ pressed }) => {
+              return {
+                backgroundColor: pressed ? "#5100CC" : "#6200EE",
+                paddingHorizontal: 16,
+                paddingVertical: 10,
+                borderRadius: 4,
+                marginTop: 28,
+              };
+            }}
+          >
+            <Text style={{ color: "#FFF", fontWeight: "500" }}>
+              BUY NOW FOR ${price}
+            </Text>
+          </Pressable>
+        ) : (
+          <Text>NOT AVAILABLE</Text>
+        )}
       </ScrollView>
     );
   }
@@ -45,7 +67,7 @@ const styles = StyleSheet.create({
   Title: {
     marginTop: 28,
     fontSize: 24,
-    fontWeight: 500,
+    fontWeight: "500",
   },
   Author: {
     marginTop: 8,
