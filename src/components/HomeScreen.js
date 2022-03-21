@@ -20,12 +20,27 @@ export default class HomeScreen extends Component {
         <SectionList
           sections={books}
           keyExtractor={(item, index) => item + index}
-          horizontal={true}
+          stickySectionHeadersEnabled={false}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => <ItemCard item={item} />}
-          renderSectionHeader={({ section: { title } }) => (
-            <Text style={styles.SectionTitle}>{title}</Text>
-          )}
+          renderItem={() => null}
+          renderSectionHeader={({ section }) => {
+            return (
+              <View style={{ overflow: "visible" }}>
+                <Text style={styles.SectionTitle}>{section.title}</Text>
+                <FlatList
+                  horizontal={true}
+                  data={section.data}
+                  keyExtractor={(item) => item.title}
+                  renderItem={({ item }) => (
+                    <ItemCard navigation={this.props.navigation} item={item} />
+                  )}
+                  showsHorizontalScrollIndicator={false}
+                  style={{ marginVertical: 8 }}
+                />
+              </View>
+            );
+          }}
+          style={{ marginHorizontal: 20 }}
         />
       </SafeAreaView>
     );
@@ -35,5 +50,7 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
   SectionTitle: {
     fontSize: 24,
+    fontWeight: 500,
+    paddingVertical: 8,
   },
 });

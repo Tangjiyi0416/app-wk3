@@ -1,39 +1,41 @@
 [{
     "title": "Popular Books",
-    "Use Rating": false,
     "data": [{
             "title": "Fashionopolis",
             "author": "Dana Thomas",
-            "image": ""
+            "image": "https://raw.githubusercontent.com/Tangjiyi0416/app-wk3/main/img/img_book_fashinopolis.png"
         },
         {
             "title": "Chanel",
             "author": "Patrick Mauriès",
-            "image": ""
+            "image": "https://raw.githubusercontent.com/Tangjiyi0416/app-wk3/main/img/img_book_chanel.png"
         },
         {
             "title": "Calligraphy",
             "author": "June & Lucy",
-            "image": ""
+            "image": "https://raw.githubusercontent.com/Tangjiyi0416/app-wk3/main/img/img_book_calligraphy.png"
         }
     ]
 }, {
     "title": "Newest",
-    "Use Rating": true,
     "data": [{
             "title": "Yves Saint Laurent",
             "author": "Suzy Menkes",
-            "image": ""
+            "image": "https://raw.githubusercontent.com/Tangjiyi0416/app-wk3/main/img/img_book_ysl.png",
+            "desc": "A spectacular visual journey through 40 years of haute couture from one of the best-known and most trend-setting brands in fashion.",
+            "rating": 4
         },
         {
-            "title": "Chanel",
-            "author": "Patrick Mauriès",
-            "image": ""
+            "title": "The Book of Signs",
+            "author": "Rudolf Koch",
+            "image": "https://raw.githubusercontent.com/Tangjiyi0416/app-wk3/main/img/img_book_tbos.png",
+            "rating": 3
         },
         {
-            "title": "Calligraphy",
-            "author": "June & Lucy",
-            "image": ""
+            "title": "Stitched Up",
+            "author": "Tansy E. Hoskins",
+            "image": "https://raw.githubusercontent.com/Tangjiyi0416/app-wk3/main/img/img_book_stitchedup.png",
+            "rating": 3
         }
     ]
 }]
