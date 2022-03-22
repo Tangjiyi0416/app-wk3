@@ -1,8 +1,12 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { StyleSheet, Pressable } from "react-native";
+import {
+  createDrawerNavigator,
+  DrawerItemList,
+  DrawerContentScrollView,
+} from "@react-navigation/drawer";
+import { View, Text, Image, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import HomeScreen from "./src/components/HomeScreen";
 import DetailScreen from "./src/components/DetailScreen";
@@ -44,7 +48,7 @@ export default function App() {
                 <Icon name="chevron-left" size={26} />
               </Pressable>
             ),
-            headerRight: () => <Icon name="bookmark-outline" size={26} />,
+
             headerRightContainerStyle: {
               justifyContent: "center",
             },
@@ -95,6 +99,23 @@ export default function App() {
       </Tab.Navigator>
     );
   }
+
+  function DrawerContent(props) {
+    return (
+      <DrawerContentScrollView>
+        <View>
+          <Image
+            style={{ height: 48, width: 48 }}
+            source={{
+              uri: "https://raw.githubusercontent.com/Tangjiyi0416/app-wk3/main/img/img_avatar.png",
+            }}
+          />
+          <Text>May</Text>
+        </View>
+        <DrawerItemList {...props} />
+      </DrawerContentScrollView>
+    );
+  }
   return (
     <NavigationContainer
       theme={{
@@ -107,6 +128,7 @@ export default function App() {
     >
       <Drawer.Navigator
         initialRouteName="Home"
+        drawerContent={DrawerContent}
         screenOptions={{
           headerShown: false, //I know what I'm doing mate. tRUsT mE!
         }}
@@ -130,12 +152,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

@@ -8,12 +8,51 @@ import {
 } from "react-native";
 import React, { Component } from "react";
 import RateBar from "./RateBar";
-import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default class DetailScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isBookmarked: false };
+  }
+  componentDidMount() {
+    this.props.navigation.setOptions({
+      headerRight: () => (
+        <Pressable
+          onPress={() => {
+            this.setState({ isBookmarked: !this.state.isBookmarked });
+          }}
+        >
+          <Icon
+            name={this.state.isBookmarked ? "bookmark" : "bookmark-outline"}
+            size={26}
+            color={this.state.isBookmarked ? "#6200EE" : "#666666"}
+          />
+        </Pressable>
+      ),
+    });
+  }
+  componentDidUpdate() {
+    this.props.navigation.setOptions({
+      headerRight: () => (
+        <Pressable
+          onPress={() => {
+            this.setState({ isBookmarked: !this.state.isBookmarked });
+          }}
+        >
+          <Icon
+            name={this.state.isBookmarked ? "bookmark" : "bookmark-outline"}
+            size={26}
+            color={this.state.isBookmarked ? "#6200EE" : "#666666"}
+          />
+        </Pressable>
+      ),
+    });
+  }
   render() {
     const { image, title, author, desc, rating, price } =
       this.props.route.params.item;
+
     return (
       <ScrollView contentContainerStyle={styles.Container}>
         <Image source={{ uri: image }} style={styles.Image} />
