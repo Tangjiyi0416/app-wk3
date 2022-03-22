@@ -85,12 +85,6 @@ export default function App() {
           tabBarInactiveTintColor: "#666666",
           tabBarActiveTintColor: "#6200EE",
           headerShown: false,
-          tabBarStyle: {
-            elevation: 2,
-            shadowOffset: { width: 0, height: -1 },
-            shadowOpacity: 0.2,
-            shadowRadius: 5,
-          },
         })}
       >
         <Tab.Screen name="Home" component={HomeStack} />
@@ -103,14 +97,28 @@ export default function App() {
   function DrawerContent(props) {
     return (
       <DrawerContentScrollView>
-        <View>
+        <View
+          style={{
+            paddingTop: 40,
+            paddingBottom: 16,
+          }}
+        >
           <Image
-            style={{ height: 48, width: 48 }}
             source={{
               uri: "https://raw.githubusercontent.com/Tangjiyi0416/app-wk3/main/img/img_avatar.png",
             }}
+            style={{ height: 48, width: 48, marginLeft: 16 }}
           />
-          <Text>May</Text>
+          <Text
+            style={{
+              marginTop: 16,
+              marginLeft: 16,
+              fontSize: 24,
+              fontWeight: "500",
+            }}
+          >
+            May
+          </Text>
         </View>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
@@ -129,9 +137,31 @@ export default function App() {
       <Drawer.Navigator
         initialRouteName="Home"
         drawerContent={DrawerContent}
-        screenOptions={{
+        screenOptions={({ route }) => ({
           headerShown: false, //I know what I'm doing mate. tRUsT mE!
-        }}
+          drawerIcon: ({ focused, size, color }) => {
+            let iconName;
+            switch (route.name) {
+              case "Home":
+                iconName = "home";
+                break;
+              case "Account":
+                iconName = "account";
+                break;
+              case "Setting":
+                iconName = "cog";
+                break;
+              default:
+                "";
+                break;
+            }
+
+            // You can return any component that you like here!
+            return <Icon name={iconName} size={size} color={color} />;
+          },
+          drawerActiveBackgroundColor: "#FFF",
+          drawerActiveTintColor: "#6022EE",
+        })}
       >
         <Drawer.Screen
           name="Home"
